@@ -1,0 +1,29 @@
+@mixin bookInfo {
+    height: 40vh;
+  border-bottom: 2px solid $accent-color-2;
+  h2 {
+    color: $accent-color-2;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .books{
+    display: inline-flex;
+  }
+
+  .bookInfo {
+    padding: 1rem; 
+    &:first-child {
+      padding-left: 0;
+    }
+    img {
+      max-height: 25vh;
+    }
+    p {
+      text-align: center;
+      color: $accent-color;
+      font-family: $title-font;
+      font-size: 1rem;
+    }
+  }
+}
