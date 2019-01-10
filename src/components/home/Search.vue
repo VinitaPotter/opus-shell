@@ -1,33 +1,57 @@
+
 <template>
   <div class="search">
-      <input v-model="query" type="text" id="search" placeholder="Find a book">
+      <div v-if="!selected.id">
+        <input v-model="query" type="text" id="search" placeholder="Find a book">
       <span><ion-icon v-on:click="showBooks" name="search"></ion-icon></span>
-      <div class="searchResult"  >
-        <p v-for="items in booksList" :key="items.id"><img :src="items.volumeInfo.imageLinks.thumbnail"> {{ items.volumeInfo.title}} </p>
+      <div class="searchResult" >
+        <p  v-for="items in booksList" :key="items.id" @click="showDetail(items)">
+          <img :src="items.volumeInfo.imageLinks.thumbnail"> 
+          {{ items.volumeInfo.title}} 
+        </p>
+      </div>
         
+      </div>
+      <div v-else>
+        <selected-book-details :selected="selected"></selected-book-details>
       </div>
   </div>
 
 </template>
 
 <script>
+
+import bookInfo from '@/components/home/bookInfo.vue'
 export default {
   name: 'Search',
   data(){
     return {
       query: "",
-      booksList: {}
+      booksList: {},
+      selected: {}
     }
   },
   methods: {
     showBooks: function() {
+      this.selected = {};
+
       fetch('https://www.googleapis.com/books/v1/volumes?q=' + this.query)
       .then(response => response.json())
-    .then(jsondata => this.booksList = jsondata.items)
-    .catch(function(err) {
-        console.log(err)
-    });
-    }
+    .then(jsondata => {
+      this.booksList = jsondata.items
+    })
+    .catch(function(err){
+      console.log(err)
+      });
+    },
+    showDetail: function(item){
+      this.selected= item;
+      this.query="";
+      this.booksList = {};
+    }    
+  },
+  components: {
+    'selected-book-details': bookInfo
   }
 }
 </script>
@@ -71,7 +95,7 @@ ion-icon {
 .searchResult {
   position: absolute;
   width: 95vw;
-  background-color: $accent-color;
+  background-color: rgba($accent-color, 1);
   p{
     font-family: $title-font;
     font-size: 1.5rem;
