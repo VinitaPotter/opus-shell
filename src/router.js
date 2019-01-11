@@ -10,7 +10,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
@@ -18,7 +18,7 @@ export default new Router({
     }
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login
 

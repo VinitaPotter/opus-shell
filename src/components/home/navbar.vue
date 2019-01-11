@@ -1,7 +1,7 @@
 <template>
     <div class="navbar">
         <button @click="logout">
-            <a href ="/login">Log Out </a>
+            <a href ="/">Log Out </a>
         </button>
     </div>
 </template>

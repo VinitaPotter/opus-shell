@@ -68,7 +68,7 @@ export default {
 .bookInfo {
     position: absolute;
     width: 95vw;
-    max-height: 80vh;
+    
     font-size: 1.5rem;
     line-height: 2.7rem;
     z-index: 3;
