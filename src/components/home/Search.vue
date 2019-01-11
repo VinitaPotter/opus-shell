@@ -1,7 +1,7 @@
 
 <template>
   <div class="search">
-      <div v-if="!selected.id">
+      <div v-if="!id" >
         <input v-model="query" type="text" id="search" placeholder="Find a book">
       <span><ion-icon v-on:click="showBooks" name="search"></ion-icon></span>
       <div class="searchResult" >
@@ -13,14 +13,14 @@
         
       </div>
       <div v-else>
-        <selected-book-details :selected="selected"></selected-book-details>
+        <selected-book-details></selected-book-details>
       </div>
   </div>
 
 </template>
 
 <script>
-
+import { mapState, mapActions } from 'vuex'
 import bookInfo from '@/components/home/bookInfo.vue'
 export default {
   name: 'Search',
@@ -28,13 +28,11 @@ export default {
     return {
       query: "",
       booksList: {},
-      selected: {}
+      selected: {},
     }
   },
   methods: {
     showBooks: function() {
-      this.selected = {};
-
       fetch('https://www.googleapis.com/books/v1/volumes?q=' + this.query)
       .then(response => response.json())
     .then(jsondata => {
@@ -48,8 +46,23 @@ export default {
       this.selected= item;
       this.query="";
       this.booksList = {};
-    }    
+      this.$store.dispatch({
+        type: 'showBook', 
+        title: this.selected.volumeInfo.title,
+        id: this.selected.id,
+        image: this.selected.volumeInfo.imageLinks.smallThumbnail,
+        authors: this.selected.volumeInfo.authors,
+        publisher: this.selected.volumeInfo.publisher,
+        pageCount: this.selected.volumeInfo.pageCount,
+        categories: this.selected.volumeInfo.categories,
+        description: this.selected.volumeInfo.description
+      })
+    }
   },
+  computed: mapState({
+    id: state => state.bookDetails.id,
+  }),
+
   components: {
     'selected-book-details': bookInfo
   }

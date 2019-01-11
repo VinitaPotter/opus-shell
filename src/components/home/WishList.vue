@@ -1,18 +1,10 @@
 <template>
   <div class="wishlist">
       <h2>Wish List</h2>
-      <div class="books">
+      <div v-for="book in books" class="books">
         <div class ="bookInfo">
-        <img src="../../img/dummy.jpg" alt="Book Cover">
-        <p>{{ bookName }}</p>
-      </div>
-      <div class ="bookInfo">
-        <img src="../../img/dummy.jpg" alt="Book Cover">
-        <p>{{ bookName }}</p>
-      </div>
-      <div class ="bookInfo">
-        <img src="../../img/dummy.jpg" alt="Book Cover">
-        <p>{{ bookName }}</p>
+        <img :src="book.image" alt="Book Cover">
+        <p>{{ book.title }}</p>
       </div>
       </div>
   </div>
@@ -20,13 +12,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'WishList',
-  data(){
-    return {
-      bookName: "Out of the box"
-    }
-  }
+  computed: mapState({
+    books: state => state.wishList,
+    
+})
 }
 </script>
 <style scoped lang="scss">

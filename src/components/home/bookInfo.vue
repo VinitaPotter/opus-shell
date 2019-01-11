@@ -1,18 +1,18 @@
 <template>
   <div class="bookInfo">
       <div>
-          <img :src="selected.volumeInfo.imageLinks? selected.volumeInfo.imageLinks.thumbnail : 'https://www.lifewire.com/thmb/qLv10Pgd30kCy7OxXacwOWKxZ8M=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/shutterstock_325494917-5a68d8403418c600190a3e1f.jpg'">
+          <img :src="image">
       </div>
       <div class="container">
-          <p id="title">{{ selected.volumeInfo.title }}</p>
-          <p>By {{ selected.volumeInfo.authors? selected.volumeInfo.authors[0] : "Not Found" }}</p>
-          <p>Publisher: {{ selected.volumeInfo.publisher ? selected.volumeInfo.publisher : "Not Found" }}</p>
-          <p>Page Count: {{ selected.volumeInfo.pageCount ? selected.volumeInfo.pageCount :  "Not Found" }}</p>
-          <p>Price: INR {{ selected.saleInfo.retailPrice ? selected.saleInfo.retailPrice.amount : "Not Found" }}</p>
-          <p id="description">{{ selected.volumeInfo.description ? selected.volumeInfo.description : "Description Not Found"}}</p>
+          <p id="title">{{ title }}</p>
+          <p>By {{ author ? author : "Not found" }}</p>
+          <p>Publisher: {{ publisher ? publisher : "Not found"  }}</p>
+          <p>Page Count: {{ pageCount ?  pageCount : "Not found"}}</p>
+          <p>Category: {{ category }}</p>
+          <p id="description">{{ description }}</p>
           <button @click="goBack"><ion-icon name="arrow-round-back"></ion-icon></button>
-          <button>Add to wishlist</button>
-          <button @click="addBook">Add to Read list</button>
+          <button @click="addToWishList">Add to wishlist</button>
+          <button @click="addToReadList">Add to Read list</button>
       </div>
       
   </div>
@@ -20,16 +20,44 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 export default {
   name: 'bookInfo',
-  props: ['selected'],
   methods: {
       goBack: function() {
-          this.selected.id="";
-      }
-  }
-  
+          this.$store.dispatch("goback")
+      },
+
+      addToWishList: function(){
+          this.$store.dispatch({
+              type: "wishList",
+              book: {
+                  title: this.$store.state.bookDetails.title,
+                  image: this.$store.state.bookDetails.image
+              }
+          })
+        },
+
+        addToReadList: function(){
+          this.$store.dispatch({
+              type: "readList",
+              book: {
+                  title: this.$store.state.bookDetails.title,
+                  image: this.$store.state.bookDetails.image
+              }
+          })
+        }
+  },
+  computed: mapState({
+    title: state => state.bookDetails.title,
+    id: state => state.bookDetails.id,
+    image: state => state.bookDetails.image,
+    author: state => state.bookDetails.authors[0],
+    publisher: state => state.bookDetails.publisher,
+    pageCount: state => state.bookDetails.pageCount,
+    category: state => state.bookDetails.categories[0],
+    description: state => state.bookDetails.description
+})
 }
 </script>
 

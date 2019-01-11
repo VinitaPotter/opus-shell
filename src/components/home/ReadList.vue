@@ -1,12 +1,12 @@
 <template>
   <div class="read">
     <h2>Read</h2>
-    <div class="books">
+     <div v-for="book in books" class="books">
         <div class ="bookInfo">
-        <img :src="image" alt="Book Cover">
-        <p>{{ title }}</p>
+        <img :src="book.image" alt="Book Cover">
+        <p>{{ book.title }}</p>
       </div>
-    </div>
+  </div>
   </div>
 
 </template>
@@ -16,8 +16,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'ReadList',
   computed: mapState({
-    title: state => state.bookDetails.title,
-    image: state => state.bookDetails.image,
+    books: state => state.myBooks,
 })
 }
 </script>
