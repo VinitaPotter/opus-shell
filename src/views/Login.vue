@@ -37,7 +37,6 @@ methods: {
     };
     button {
         all: unset;
-        display: inline;
         background:#e1e1e1;
         color:#666;
         border:0;
