@@ -1,12 +1,14 @@
 <template>
   <div class="read">
     <h2>Read</h2>
-     <div v-for="book in books" :key="book.id" class="books">
-        <div class ="bookInfo">
-        <img :src="book.image" alt="Book Cover">
-        <p>{{ book.title }}</p>
-      </div>
-  </div>
+     <div class="container">
+        <div v-for="book in books" :key="book.id" class="books">
+          <div class ="bookInfo">
+          <img :src="book.image" alt="Book Cover">
+          <p>{{ book.title }}</p>
+        </div>
+    </div>
+     </div>
   </div>
 
 </template>

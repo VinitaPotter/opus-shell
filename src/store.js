@@ -12,10 +12,6 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
   state: {
-    user: {
-      name: "",
-      uid: "",
-    },
     bookDetails: {
       type: 'showBook', 
         title: "",

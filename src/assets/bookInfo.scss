@@ -1,11 +1,13 @@
 @mixin bookInfo {
-    height: 40vh;
-    border-bottom: 2px solid $accent-color-2;
+    min-height: 40vh;
+    border-bottom: 2px solid $accent-color;
+    
   h2 {
     color: $accent-color-2;
     text-align: center;
     font-size: 1.5rem;
   }
+
   
   .books{
     display: inline-flex;

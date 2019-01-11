@@ -3,9 +3,9 @@
   <div class="search">
       <div v-if="!id" >
         <input v-model="query" type="text" id="search" placeholder="Find a book">
-      <span><ion-icon v-on:click="showBooks" name="search"></ion-icon></span>
-      <div class="searchResult" >
-        <div class="resultNames">
+          <span><ion-icon v-on:click="showBooks" name="search"></ion-icon></span>
+          <div class="searchResult" >
+            <div class="resultNames">
           <p  v-for="items in booksList" :key="items.id" @click="showDetail(items)">
           <img :src="items.volumeInfo.imageLinks.thumbnail"> 
           {{ items.volumeInfo.title}} 
@@ -81,7 +81,7 @@ export default {
 
 .search{
   text-align: center;
-  border-bottom: 2px solid $accent-color-2;
+  border-bottom: 2px solid $accent-color;
 }
 
 #search{
@@ -93,7 +93,7 @@ export default {
   outline: none;
   background-color: inherit;
   @include font;
-  &::focus {
+  &:focus {
     border: none;
     transition: 0.35s ease;
     color: #008ABF;
@@ -109,10 +109,9 @@ ion-icon {
 
 .searchResult {
   position: absolute;
-  width: 95vw;
   background-color: rgba($accent-color, .8);
   .resultNames {
-    margin-left: 10rem;
+    margin-left: 1rem;
   }
   p{
     font-size: 1.5rem;
@@ -128,5 +127,24 @@ ion-icon {
   }
   
 }
+
+@media only screen and (max-width: 500px) {
+    #search {
+      max-width: 100vw;
+      input {
+        max-width: 80%;
+        text-align: left;
+      };
+    }
+  }
+
+  @media only screen and (min-width: 500px) {
+    .searchResult {
+      min-width: 95vw;
+    .resultNames {
+    margin-left: 10rem;
+  }
+  }
+  }
 
 </style>

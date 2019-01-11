@@ -11,8 +11,8 @@
           <p>Category: {{ category }}</p>
           <p id="description">{{ description }}</p>
           <button @click="goBack"><ion-icon name="arrow-round-back"></ion-icon></button>
-          <button @click="addToWishList">Add to wishlist</button>
-          <button @click="addToReadList">Add to Read list</button>
+          <button @click.once="addToWishList">Add to wishlist</button>
+          <button @click.once="addToReadList">Add to Read list</button>
       </div>
       
   </div>
@@ -84,13 +84,13 @@ export default {
         padding: .5rem;
         justify-content: right;
         text-align: right;
+        margin-right: .5rem;
         button {
             all: unset;
             border: none;
             background-color: $accent-color-2;
             display: inline-block;
             text-decoration: none;
-            user-select: none;
             letter-spacing: 1rem;
             color: white;
             padding: 1rem 2rem;
@@ -124,13 +124,15 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .container {
-      margin: 3rem;
+      p {
+          text-align: left;
+      }
+       
+  }
+  img {
+      visibility: hidden;
+      
   }
 }
 
-@media only screen and (max-width: 460px) {
-  img {
-      visibility: hidden;
-  }
-}
 </style>
