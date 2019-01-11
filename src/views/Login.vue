@@ -14,7 +14,7 @@ methods: {
         const provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then((result)=> {
-            this.$router.replace('/');
+            this.$router.replace('/home');
         }).catch((err) => {
             alert('oops' +err.message)
         })
