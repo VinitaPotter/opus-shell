@@ -1,7 +1,7 @@
 <template>
   <div class="wishlist">
       <h2>Wish List</h2>
-      <div v-for="book in books" class="books">
+      <div v-for="book in books" :key="book.id" class="books">
         <div class ="bookInfo">
         <img :src="book.image" alt="Book Cover">
         <p>{{ book.title }}</p>

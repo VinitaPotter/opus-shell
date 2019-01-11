@@ -5,6 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: {
+      name: "",
+      uid: "",
+    },
     bookDetails: {
       type: 'showBook', 
         title: "",
@@ -44,7 +48,7 @@ export default new Vuex.Store({
 
     READ_LIST (state, payload) {
       state.myBooks.push(payload.book)
-    },
+    }
 
   },
   actions: {
@@ -60,8 +64,7 @@ export default new Vuex.Store({
 
     readList  (context, payload) {
       context.commit('READ_LIST', payload)
-    },
-   
+    }  
     
   }
 })

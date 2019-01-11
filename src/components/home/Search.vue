@@ -5,10 +5,12 @@
         <input v-model="query" type="text" id="search" placeholder="Find a book">
       <span><ion-icon v-on:click="showBooks" name="search"></ion-icon></span>
       <div class="searchResult" >
-        <p  v-for="items in booksList" :key="items.id" @click="showDetail(items)">
+        <div class="resultNames">
+          <p  v-for="items in booksList" :key="items.id" @click="showDetail(items)">
           <img :src="items.volumeInfo.imageLinks.thumbnail"> 
           {{ items.volumeInfo.title}} 
         </p>
+         </div>
       </div>
         
       </div>
@@ -108,12 +110,15 @@ ion-icon {
 .searchResult {
   position: absolute;
   width: 95vw;
-  background-color: rgba($accent-color, 1);
+  background-color: rgba($accent-color, .8);
+  .resultNames {
+    margin-left: 10rem;
+  }
   p{
-    font-family: $title-font;
     font-size: 1.5rem;
     line-height: 2.7rem;
-    border-bottom: 1px solid #494949;
+    border-bottom: 1px solid $secondary-color;
+    text-align: left;
     img {
       display: inline-block;
       max-height: 30px;

@@ -33,7 +33,8 @@ export default {
               type: "wishList",
               book: {
                   title: this.$store.state.bookDetails.title,
-                  image: this.$store.state.bookDetails.image
+                  image: this.$store.state.bookDetails.image,
+                  id: this.$store.state.bookDetails.id
               }
           })
         },

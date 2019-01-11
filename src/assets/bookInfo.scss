@@ -1,6 +1,6 @@
 @mixin bookInfo {
     height: 40vh;
-  border-bottom: 2px solid $accent-color-2;
+    border-bottom: 2px solid $accent-color-2;
   h2 {
     color: $accent-color-2;
     text-align: center;
@@ -13,17 +13,21 @@
 
   .bookInfo {
     padding: 1rem; 
+    max-width: 10rem;
     &:first-child {
       padding-left: 0;
     }
     img {
       max-height: 25vh;
+      display: block;
+      margin: auto;
     }
     p {
       text-align: center;
-      color: $accent-color;
+      color: #595959;
       font-family: $title-font;
       font-size: 1rem;
+      padding-top: .2rem;
     }
   }
 }
